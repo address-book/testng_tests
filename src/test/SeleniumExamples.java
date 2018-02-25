@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+
 public class SeleniumExamples {
 
     @Test
@@ -31,6 +33,8 @@ public class SeleniumExamples {
         emailElement.sendKeys(email);
         driver.findElement(By.id("session_password")).sendKeys(password);
         driver.findElement(By.name("commit")).click();
+
+        assertEquals("Address Book", driver.getTitle());
 
         driver.quit();
     }
