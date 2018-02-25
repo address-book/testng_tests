@@ -10,7 +10,7 @@ import static org.testng.Assert.assertEquals;
 
 public class SeleniumExamples extends BaseTest {
 
-    @Test
+    @Test(retryAnalyzer = test.RetryAnalyzer.class)
     public void signIn() {
         driver.get("http://address-book-example.herokuapp.com");
         driver.findElement(By.id("sign-in")).click();
@@ -28,7 +28,7 @@ public class SeleniumExamples extends BaseTest {
         driver.findElement(By.id("session_password")).sendKeys(password);
         driver.findElement(By.name("commit")).click();
 
-        assertEquals("Address Book", driver.getTitle());
+        assertEquals("Address Book -d", driver.getTitle());
     }
 
 }
