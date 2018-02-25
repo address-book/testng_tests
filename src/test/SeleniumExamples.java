@@ -1,5 +1,6 @@
 package test;
 
+import data.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,13 +11,10 @@ import static org.testng.Assert.assertEquals;
 
 public class SeleniumExamples extends BaseTest {
 
-    @Test(retryAnalyzer = test.RetryAnalyzer.class)
-    public void signIn() {
+    @Test(dataProvider = "validUser", dataProviderClass = UserData.class, retryAnalyzer = test.RetryAnalyzer.class)
+    public void signIn(String email, String password) {
         driver.get("http://address-book-example.herokuapp.com");
         driver.findElement(By.id("sign-in")).click();
-
-        String email = "saucecon@example.com";
-        String password = "password";
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
 
