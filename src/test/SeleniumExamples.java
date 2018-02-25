@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class SeleniumExamples {
 
     @Test
-    public void signIn() {
+    public void signIn() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "lib/drivers/chromedriver");
         WebDriver driver = new ChromeDriver();
 
@@ -18,6 +18,8 @@ public class SeleniumExamples {
 
         String email = "saucecon@example.com";
         String password = "password";
+
+        Thread.sleep((2000));
 
         driver.findElement(By.id("session_email")).sendKeys(email);
         driver.findElement(By.id("session_password")).sendKeys(password);
