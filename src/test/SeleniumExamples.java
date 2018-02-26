@@ -1,6 +1,7 @@
 package test;
 
 import data.*;
+import pages.*;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
@@ -15,7 +16,7 @@ public class SeleniumExamples extends BaseTest {
         SignInPage signInPage = new SignInPage(driver);
         signInPage.signIn(email, password);
 
-        assertTrue(homePage.isSignedIn());
+        assertTrue(homePage.isSignedIn(email));
     }
 
 }
