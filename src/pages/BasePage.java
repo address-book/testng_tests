@@ -1,31 +1,50 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.*;
 
 class BasePage {
     WebDriver browser;
 
-    void click(By locator) {
-        waitForElement(locator);
-        browser.findElement(locator).click();
+    void click(By locator) throws InterruptedException {
+        int count = 0;
+        int maxTries = 60;
+        while(true) {
+            try {
+                browser.findElement(locator).click();
+                return;
+            } catch (NoSuchElementException | ElementNotVisibleException e) {
+                Thread.sleep(500);
+                if (++count == maxTries) throw e;
+            }
+        }
     }
 
-    String getText(By locator) {
-        waitForElement(locator);
-        return browser.findElement(locator).getText();
+    String getText(By locator) throws InterruptedException {
+        int count = 0;
+        int maxTries = 60;
+        while(true) {
+            try {
+                return browser.findElement(locator).getText();
+            } catch (NoSuchElementException | ElementNotVisibleException e) {
+                Thread.sleep(500);
+                if (++count == maxTries) throw e;
+            }
+        }
     }
 
-    void sendKeys(By locator, String text) {
-        waitForElement(locator);
-        browser.findElement(locator).sendKeys(text);
+    void sendKeys(By locator, String text) throws InterruptedException {
+        int count = 0;
+        int maxTries = 60;
+        while(true) {
+            try {
+                browser.findElement(locator).sendKeys(text);
+                return;
+            } catch (NoSuchElementException | ElementNotVisibleException e) {
+                Thread.sleep(500);
+                if (++count == maxTries) throw e;
+            }
+        }
     }
-
-    private void waitForElement(By locator) {
-        WebDriverWait wait = new WebDriverWait(browser, 30);
-        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-    }
-
 }
+
+

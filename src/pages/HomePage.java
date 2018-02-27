@@ -17,11 +17,11 @@ public class HomePage extends BasePage {
         this.browser = browser;
     }
 
-    public void navigateToSignIn() {
+    public void navigateToSignIn() throws InterruptedException {
         click(signInLink);
     }
 
-    public Boolean isSignedIn(String email) {
+    public Boolean isSignedIn(String email) throws InterruptedException {
         return getText(user).equals(email);
     }
 }

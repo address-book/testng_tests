@@ -12,7 +12,7 @@ public class SignInPage extends BasePage {
         this.browser = browser;
     }
 
-    public void signIn(String email, String password) {
+    public void signIn(String email, String password) throws InterruptedException {
         sendKeys(emailField, email);
         sendKeys(passwordField, password);
         click(commitButton);
