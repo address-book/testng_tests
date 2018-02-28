@@ -9,6 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SignInPage {
     private WebDriver browser;
 
+    private By emailField = By.id("session_email");
+    private By passwordField = By.id("session_password");
+    private By commitButton = By.name("commit");
+
     public SignInPage(WebDriver browser) {
         this.browser = browser;
     }
