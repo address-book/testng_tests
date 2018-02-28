@@ -7,7 +7,7 @@ import org.testng.ITestResult;
 
         @Override
         public boolean retry(ITestResult result) {
-            if(counter < 2)
+            if(counter < 0)
             {
                 counter++;
                 return true;

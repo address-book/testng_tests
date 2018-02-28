@@ -28,7 +28,7 @@ public class SeleniumExamples extends BaseTest {
         driver.findElement(By.id("session_password")).sendKeys(password);
         driver.findElement(By.name("commit")).click();
 
-        assertEquals("Address Book -d", driver.getTitle());
+        assertEquals("Address Book", driver.getTitle());
     }
 
 }
