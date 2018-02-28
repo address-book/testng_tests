@@ -7,6 +7,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -16,7 +17,7 @@ public class BaseTest {
     private String useSauce = System.getenv("USE_SAUCE");
 
     @BeforeMethod
-    public void setup() throws MalformedURLException {
+    public void setup(Method method) throws MalformedURLException {
         if (useSauce == null) {
             System.setProperty("webdriver.chrome.driver", "lib/drivers/chromedriver");
             driver = new ChromeDriver();
@@ -27,6 +28,7 @@ public class BaseTest {
             String browserEnv = System.getenv("BROWSER");
             String platformEnv = System.getenv("PLATFORM");
             String versionEnv = System.getenv("VERSION");
+            String buildEnv = System.getenv("BUILD_TAG");
 
             String browser = browserEnv == null ? "chrome" : browserEnv;
             String version = versionEnv == null ? "63.0" : versionEnv;
@@ -36,6 +38,11 @@ public class BaseTest {
             caps.setCapability("browserName", browser);
             caps.setCapability("platform", platform);
             caps.setCapability("version", version);
+
+            caps.setCapability("name", method.getName());
+            if (buildEnv != null) {
+                caps.setCapability("build", buildEnv);
+            }
 
             driver = new RemoteWebDriver(new URL(URL), caps);
         }
