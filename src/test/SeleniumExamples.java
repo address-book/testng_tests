@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -49,9 +48,9 @@ public class SeleniumExamples extends BaseTest {
 
     @Test(dataProvider = "validUser", dataProviderClass = UserData.class, retryAnalyzer = test.RetryAnalyzer.class)
     public void openBrowser2() throws InterruptedException, MalformedURLException {
-        public static final String USERNAME = System.getenv("SAUCE_USERNAME");
-        public static final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
-        public static final String URL = "https://" + USERNAME + ":"
+        final String USERNAME = System.getenv("SAUCE_USERNAME");
+        final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
+        final String URL = "https://" + USERNAME + ":"
                 + ACCESS_KEY + "@ondemand.saucelabs.com:443/wd/hub";
         String email = "stpcon@example.com";
         String password = "example";
